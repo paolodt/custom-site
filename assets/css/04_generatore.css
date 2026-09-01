@@ -1,0 +1,73 @@
+/*******************************************************************************
+ * 04_generatore — il riquadro del generatore di nomi.
+ * Ha l'aria di una finestrella di terminale, coerente col resto del sito.
+ *
+ * Le regole vincono su quelle di 05_markdown per specificità (due classi
+ * contro classe + tipo), non per ordine nel bundle.
+ ******************************************************************************/
+
+.markdown .generatore {
+  margin: 1.6rem 0;
+  border: 1px solid var(--bordo);
+  background: var(--sfondo-code);
+}
+
+.markdown .generatore-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--bordo);
+  background: var(--sfondo-alt);
+}
+
+.markdown .generatore-nome {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--testo-tenue);
+}
+
+.markdown .generatore-btn {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.7rem;
+  color: var(--accento);
+  background: none;
+  border: 1px solid var(--bordo-chiaro);
+  cursor: pointer;
+}
+
+.markdown .generatore-btn:hover {
+  color: var(--sfondo);
+  background: var(--accento);
+  border-color: var(--accento);
+}
+
+.markdown .generatore-btn:active {
+  transform: translateY(1px);
+}
+
+.markdown .generatore-uscita {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--testo);
+  overflow-x: auto;
+  /* Due righe esatte: lo spazio resta occupato anche prima della prima
+     generazione, così il riquadro non salta. */
+  min-height: calc(2 * 1.6em);
+  box-sizing: content-box;
+}
+
+.markdown .generatore-nota {
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  border-top: 1px solid var(--bordo);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--bordo-chiaro);
+}

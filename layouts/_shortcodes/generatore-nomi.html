@@ -1,0 +1,25 @@
+{{/* Generatore di nomi eseguibile in pagina. I nomi stanno in data/nomi.json,
+     così si aggiornano senza toccare il codice.
+
+     Nota: qui si usa site.Data e non hugo.Data (che pure lo sostituisce dalla
+     0.156) perché l'immagine di build di Cloudflare ha Hugo 0.147, dove
+     hugo.Data non esiste ancora. Meglio un avviso di deprecazione in locale
+     che una build rotta in produzione. */}}
+{{- $nomi := site.Data.nomi -}}
+<div class="generatore" data-generatore>
+  <div class="generatore-barra">
+    <span class="generatore-nome">name-generator</span>
+    <button type="button" class="generatore-btn" data-genera>genera</button>
+  </div>
+  <pre class="generatore-uscita" data-uscita aria-live="polite" aria-label="Nomi generati"></pre>
+  <p class="generatore-nota">
+    {{ len $nomi.maschili }} nomi maschili, {{ len $nomi.femminili }} femminili.
+  </p>
+</div>
+
+{{/* safeJS: dentro a <script> il template escaper tratterebbe il JSON come una
+     stringa JS, e JSON.parse restituirebbe una stringa invece dell'oggetto. */}}
+<script type="application/json" id="nomi-dati">{{ $nomi | jsonify | safeJS }}</script>
+{{ with resources.Get "js/generatore-nomi.js" | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{ end }}

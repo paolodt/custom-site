@@ -25,14 +25,16 @@
     <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}" />
   {{- end }}
 
-  {{/* CSS in file numerati, concatenati in un solo bundle. L'ordine conta:
-       04_responsive deve stare dopo le regole che sovrascrive. */}}
+  {{/* CSS in file numerati, concatenati in un solo bundle. I numeri sono
+       l'ordine di caricamento: il responsive va per ultimo perché sovrascrive
+       tutto quello che viene prima. */}}
   {{- $fogli := slice
     (resources.Get "css/01_layout.css")
     (resources.Get "css/02_style.css")
     (resources.Get "css/03_home.css")
+    (resources.Get "css/04_generatore.css")
     (resources.Get "css/05_markdown.css")
-    (resources.Get "css/04_responsive.css")
+    (resources.Get "css/06_responsive.css")
   -}}
   {{- with $fogli | resources.Concat "css/site.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
