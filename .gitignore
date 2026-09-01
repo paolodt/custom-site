@@ -9,5 +9,9 @@
 .wrangler/
 .dev.vars
 
+# Script locali per aggiungere contenuti: stanno solo sulla mia macchina
+/nuovo
+/pubblica
+
 # Sistema
 .DS_Store
