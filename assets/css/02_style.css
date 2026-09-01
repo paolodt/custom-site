@@ -295,21 +295,10 @@ footer {
   font-variant-numeric: tabular-nums;
 }
 
-.elenco-descrizione {
-  flex: 1 0 100%;
-  margin: 0.1rem 0 0;
-  font-size: 0.9rem;
-  color: var(--testo-tenue);
-}
-
 .elenco-vuoto,
 .galleria-mancante {
   color: var(--bordo-chiaro);
   font-style: italic;
-}
-
-.intro-sezione {
-  margin-bottom: 1.5rem;
 }
 
 /*** Galleria dei disegni ***/

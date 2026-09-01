@@ -2,7 +2,9 @@
 <footer>
   <div class="status_left">{{ .RelPermalink }}</div>
   <div class="status_right">
-    {{- if and .IsPage (gt .WordCount 0) }}{{ .WordCount }} parole&ensp;·&ensp;{{ end -}}
+    {{/* Soglia bassa ma non zero: sulle pagine fatte di solo widget il conteggio
+         direbbe "2 parole", che è peggio del non dirlo. */}}
+    {{- if and .IsPage (gt .WordCount 20) }}{{ .WordCount }} parole&ensp;·&ensp;{{ end -}}
     UTF-8&ensp;·&ensp;IT
   </div>
 </footer>

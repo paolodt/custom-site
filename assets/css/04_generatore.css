@@ -62,12 +62,3 @@
   min-height: calc(2 * 1.6em);
   box-sizing: content-box;
 }
-
-.markdown .generatore-nota {
-  margin: 0;
-  padding: 0.4rem 0.6rem;
-  border-top: 1px solid var(--bordo);
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--bordo-chiaro);
-}

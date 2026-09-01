@@ -16,14 +16,6 @@ article.main.is-home {
   color: var(--titolo);
 }
 
-.home-intro {
-  color: var(--testo-tenue);
-}
-
-.home-intro p {
-  margin: 0 0 0.75rem;
-}
-
 .recommend {
   display: flex;
   gap: 3rem;

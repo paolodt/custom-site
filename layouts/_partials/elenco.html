@@ -8,7 +8,6 @@
           {{ .Date | time.Format ":date_medium" }}
         </time>
       {{ end }}
-      {{ with .Description }}<p class="elenco-descrizione">{{ . }}</p>{{ end }}
     </li>
   {{ else }}
     <li class="elenco-vuoto">Ancora niente qui.</li>
