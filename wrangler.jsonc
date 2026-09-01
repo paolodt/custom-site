@@ -4,6 +4,12 @@
   // altrimenti la build fallisce.
   "name": "custom-site",
   "compatibility_date": "2026-09-01",
+  // Il build sta qui e non in un campo della dashboard: così è versionato
+  // insieme al resto e wrangler lo esegue da sé prima del deploy, anche per
+  // un Worker senza "main" come questo.
+  "build": {
+    "command": "hugo --gc --minify"
+  },
   "assets": {
     "directory": "./public",
     // foo.html servito senza slash finale, foo/index.html con lo slash.

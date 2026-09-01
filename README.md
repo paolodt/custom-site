@@ -76,18 +76,14 @@ albero. I template e il CSS di questo repo sono però scritti da zero.
 
 ## Deploy
 
-Cloudflare Workers Builds è collegato a questo repo:
+Cloudflare Workers Builds è collegato a questo repo e non ha bisogno di nessuna
+impostazione nella dashboard: il comando di build sta in `wrangler.jsonc`, e
+`wrangler deploy` lo esegue da solo prima di caricare gli asset.
 
-| impostazione                     | valore                          |
-| -------------------------------- | ------------------------------- |
-| Build command                    | `hugo --gc --minify`            |
-| Deploy command                   | `npx wrangler@4 deploy`         |
-| Non-production branch deploy     | `npx wrangler@4 versions upload` |
-| Production branch                | `main`                          |
-| Build variable `HUGO_VERSION`    | `0.165.0`                       |
-
-Senza `HUGO_VERSION` l'immagine di build usa la sua versione di Hugo, che è più
-vecchia di quella usata in locale.
+L'immagine di build di Cloudflare ha Hugo già installato. La sua versione è più
+vecchia di quella usata in locale (0.147 contro 0.165), ma il sito viene
+identico — verificato, date in italiano comprese — quindi non serve pinnare
+`HUGO_VERSION`.
 
 Un push su un branch diverso da `main` produce un deployment di **preview** con
 un URL suo, senza toccare la produzione.
