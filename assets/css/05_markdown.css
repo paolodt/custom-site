@@ -1,0 +1,154 @@
+/*******************************************************************************
+ * 05_markdown — tipografia del contenuto generato da Goldmark.
+ ******************************************************************************/
+
+.markdown {
+  max-width: 72ch;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+/* Percorsi e nomi di file nel codice inline sono token lunghi senza spazi:
+   senza questo sforano la colonna invece di andare a capo. Nei blocchi <pre>
+   invece si scorre, che è il comportamento giusto per il codice. */
+.markdown :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
+.markdown > *:first-child {
+  margin-top: 0;
+}
+
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin: 2.2rem 0 0.75rem;
+  line-height: 1.3;
+  color: var(--titolo);
+}
+
+.markdown h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--bordo);
+}
+
+.markdown h3 {
+  font-size: 1.2rem;
+}
+
+.markdown h4 {
+  font-size: 1.05rem;
+}
+
+.markdown p {
+  margin: 0 0 1.1rem;
+}
+
+.markdown a {
+  color: var(--accento);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accento-tenue);
+}
+
+.markdown a:hover {
+  text-decoration-color: var(--accento);
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
+}
+
+.markdown li {
+  margin: 0.25rem 0;
+}
+
+.markdown li > ul,
+.markdown li > ol {
+  margin-bottom: 0;
+}
+
+.markdown blockquote {
+  margin: 1.4rem 0;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 3px solid var(--bordo-chiaro);
+  color: var(--testo-tenue);
+}
+
+.markdown code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  background: var(--sfondo-code);
+  border: 1px solid var(--bordo);
+}
+
+.markdown pre {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+  background: var(--sfondo-code);
+  border: 1px solid var(--bordo);
+}
+
+.markdown pre code {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--bordo);
+}
+
+.markdown hr {
+  margin: 2.2rem 0;
+  border: none;
+  border-top: 1px solid var(--bordo);
+}
+
+.markdown table {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.2rem 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.markdown th,
+.markdown td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--bordo);
+  text-align: left;
+}
+
+.markdown th {
+  background: var(--sfondo-code);
+  color: var(--titolo);
+}
+
+.markdown mark {
+  background: rgba(229, 192, 123, 0.25);
+  color: inherit;
+  padding: 0 0.2em;
+}
+
+.markdown kbd {
+  font-family: var(--mono);
+  font-size: 0.8em;
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--bordo-chiaro);
+  border-bottom-width: 2px;
+}

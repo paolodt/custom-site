@@ -1,0 +1,44 @@
+baseURL = 'https://paolodellatorre.com/'
+locale = 'it-IT'
+defaultContentLanguage = 'it'
+title = 'Paolo Della Torre'
+enableRobotsTXT = true
+enableEmoji = true
+
+# Le pagine con data futura non vengono pubblicate.
+buildFuture = false
+
+[pagination]
+  pagerSize = 30
+
+[params]
+  descrizione = 'Progettini, pensieri e disegni.'
+  autore = 'Paolo Della Torre'
+  # Mostrato nella barra del titolo, in stile prompt di shell.
+  prompt = '~/paolodellatorre.com'
+  github = 'https://github.com/paolodt'
+
+[markup]
+  [markup.goldmark.renderer]
+    # Permette HTML inline nel markdown (utile per le note esportate da Obsidian).
+    unsafe = true
+  [markup.highlight]
+    style = 'onedark'
+    noClasses = true
+    lineNos = false
+    tabWidth = 2
+
+[taxonomies]
+  tag = 'tags'
+
+[services]
+  [services.rss]
+    limit = 30
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html', 'rss']
+
+[imaging]
+  quality = 82
+  resampleFilter = 'lanczos'

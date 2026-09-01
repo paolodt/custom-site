@@ -1,0 +1,40 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {{/* Il titolo della 404 lo genera Hugo in inglese: qui lo sostituisco. */}}
+  {{- $nome := cond (eq .Kind "404") "Pagina non trovata" .Title -}}
+  {{- $titolo := cond .IsHome site.Title (printf "%s · %s" $nome site.Title) -}}
+  {{- $descrizione := or .Description .Summary site.Params.descrizione | plainify | truncate 160 -}}
+  <title>{{ $titolo }}</title>
+  <meta name="description" content="{{ $descrizione }}" />
+  <meta name="author" content="{{ site.Params.autore }}" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />
+  <meta name="theme-color" content="#282c34" />
+
+  <meta property="og:type" content="{{ cond .IsPage "article" "website" }}" />
+  <meta property="og:title" content="{{ $titolo }}" />
+  <meta property="og:description" content="{{ $descrizione }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="{{ site.Title }}" />
+  <meta name="twitter:card" content="summary" />
+
+  {{- with .OutputFormats.Get "rss" }}
+    <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}" />
+  {{- end }}
+
+  {{/* CSS in file numerati, concatenati in un solo bundle. L'ordine conta:
+       04_responsive deve stare dopo le regole che sovrascrive. */}}
+  {{- $fogli := slice
+    (resources.Get "css/01_layout.css")
+    (resources.Get "css/02_style.css")
+    (resources.Get "css/03_home.css")
+    (resources.Get "css/05_markdown.css")
+    (resources.Get "css/04_responsive.css")
+  -}}
+  {{- with $fogli | resources.Concat "css/site.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+  {{- end }}
+</head>

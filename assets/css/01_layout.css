@@ -1,0 +1,91 @@
+/*******************************************************************************
+ * 01_layout — la cornice da editor.
+ *
+ * La finestra non scorre mai: header e footer sono barre fisse, in mezzo una
+ * riga flex con sidebar e contenuto. L'unico elemento che scorre è <article>.
+ *
+ * Il tema originale dimensiona le barre in percentuale (3% / 94% / 3%); qui
+ * uso flex con altezze fisse: stesso risultato visivo, ma le barre non si
+ * schiacciano sui monitor bassi e non serve tenere i conti allineati a mano.
+ ******************************************************************************/
+
+:root {
+  --header-h: 34px;
+  --footer-h: 24px;
+  --sidebar-w: 240px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  flex: 0 0 auto;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0; /* senza questo il figlio con overflow non si comprime */
+}
+
+footer {
+  flex: 0 0 auto;
+  height: var(--footer-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+aside.sidebar {
+  flex: 0 0 auto;
+  width: var(--sidebar-w);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+article.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 2rem 3rem 4rem;
+}
+
+/* Velo dietro alla sidebar quando si apre sopra il contenuto (solo <900px). */
+.scrim {
+  position: fixed;
+  inset: var(--header-h) 0 var(--footer-h) 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 10;
+}
+
+@media (min-width: 901px) {
+  .scrim {
+    display: none !important;
+  }
+}

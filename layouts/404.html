@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="title">
+    <div class="title-left">
+      <nav class="breadcrumb" aria-label="Percorso">
+        <a href="{{ "/" | relURL }}">~</a><span class="sep">/</span
+        ><span class="corrente">404</span>
+      </nav>
+      <h1 class="title-header">Pagina non trovata</h1>
+    </div>
+  </div>
+  <div class="markdown">
+    <p>Questo file non esiste, o è stato spostato.</p>
+    <p>Prova dall'<a href="{{ "/" | relURL }}">indice</a>, o usa l'albero qui a fianco.</p>
+  </div>
+{{ end }}

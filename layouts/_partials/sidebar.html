@@ -1,0 +1,34 @@
+{{/* Albero di navigazione: ogni sezione è una "cartella" apribile.
+     Usa <details>, così l'apertura funziona anche senza JavaScript. */}}
+<aside class="sidebar" id="sidebar">
+  <nav aria-label="Navigazione del sito">
+    <a class="tree-file tree-root{{ if .IsHome }} is-active{{ end }}" href="{{ "/" | relURL }}">
+      home
+    </a>
+
+    {{ range site.Sections.ByWeight }}
+      {{ $sezione := . }}
+      {{ $corrente := eq $.RelPermalink $sezione.RelPermalink }}
+      {{/* Sempre aperte: le sezioni sono poche e vedere tutto l'albero
+           aiuta più che tenerlo chiuso. Chi vuole le richiude a mano. */}}
+      <details class="tree-dir" open>
+        <summary class="{{ if $corrente }}is-active{{ end }}">
+          <a href="{{ $sezione.RelPermalink }}">{{ $sezione.LinkTitle }}</a>
+        </summary>
+        <ul>
+          {{ range $sezione.RegularPagesRecursive.ByDate.Reverse }}
+            <li>
+              <a
+                class="tree-file{{ if eq $.RelPermalink .RelPermalink }} is-active{{ end }}"
+                href="{{ .RelPermalink }}"
+                >{{ .LinkTitle }}</a
+              >
+            </li>
+          {{ else }}
+            <li class="tree-vuota">ancora niente</li>
+          {{ end }}
+        </ul>
+      </details>
+    {{ end }}
+  </nav>
+</aside>

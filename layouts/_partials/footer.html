@@ -1,0 +1,8 @@
+{{/* Barra di stato, in stile editor: percorso a sinistra, metadati a destra. */}}
+<footer>
+  <div class="status_left">{{ .RelPermalink }}</div>
+  <div class="status_right">
+    {{- if and .IsPage (gt .WordCount 0) }}{{ .WordCount }} parole&ensp;·&ensp;{{ end -}}
+    UTF-8&ensp;·&ensp;IT
+  </div>
+</footer>

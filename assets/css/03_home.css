@@ -1,0 +1,64 @@
+/*******************************************************************************
+ * 03_home — solo la homepage.
+ * Come nel tema: molto respiro ai lati e un blocco a due colonne.
+ ******************************************************************************/
+
+article.main.is-home {
+  padding: 8vh 20vw 6vh;
+}
+
+.home-title {
+  margin: 0 0 0.75rem;
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--titolo);
+}
+
+.home-intro {
+  color: var(--testo-tenue);
+}
+
+.home-intro p {
+  margin: 0 0 0.75rem;
+}
+
+.recommend {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.recommend > div {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.home-sezione {
+  margin: 0 0 0.4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--bordo);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--testo-tenue);
+}
+
+.home-sezione a:hover {
+  color: var(--accento);
+}
+
+.home-disegni {
+  margin-top: 3rem;
+}
+
+.galleria-stretta {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  margin-top: 1rem;
+}
+
+.galleria-stretta img {
+  height: 130px;
+}

@@ -1,0 +1,4 @@
+{{ define "main" }}
+  {{ partial "titolo.html" . }}
+  {{ partial "elenco.html" .Pages.ByDate.Reverse }}
+{{ end }}

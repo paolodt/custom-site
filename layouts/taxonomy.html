@@ -1,0 +1,8 @@
+{{ define "main" }}
+  {{ partial "titolo.html" . }}
+  <div class="tags">
+    {{ range .Pages }}
+      <a class="tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }} <span>{{ len .Pages }}</span></a>
+    {{ end }}
+  </div>
+{{ end }}

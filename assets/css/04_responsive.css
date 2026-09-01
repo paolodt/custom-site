@@ -1,0 +1,91 @@
+/*******************************************************************************
+ * 04_responsive — stessi punti di rottura del tema: 1400 / 900 / 700 / 440.
+ * Deve stare per ultimo nel bundle: sovrascrive i file precedenti.
+ ******************************************************************************/
+
+@media only screen and (max-width: 1400px) {
+  article.main.is-home {
+    padding: 8vh 10vw 6vh;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  /* Sotto i 900px la sidebar esce dal flusso e scorre sopra il contenuto. */
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  aside.sidebar {
+    position: fixed;
+    top: var(--header-h);
+    bottom: var(--footer-h);
+    left: 0;
+    z-index: 20;
+    width: min(280px, 80vw);
+    transform: translateX(-100%);
+    transition: transform 0.18s ease;
+    box-shadow: 2px 0 14px rgba(0, 0, 0, 0.45);
+  }
+
+  body.sidebar-open aside.sidebar {
+    transform: none;
+  }
+
+  article.main {
+    padding: 1.75rem 1.5rem 3rem;
+  }
+
+  article.main.is-home {
+    padding: 6vh 5vw 4vh;
+  }
+
+  .recommend {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .galleria {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .galleria-tile img {
+    height: 150px;
+  }
+}
+
+@media only screen and (prefers-reduced-motion: reduce) {
+  aside.sidebar,
+  details.tree-dir > summary::before {
+    transition: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .home-title {
+    font-size: 2.1rem;
+  }
+
+  .title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .title-meta {
+    padding-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  article.main {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+
+  .header_right {
+    display: none;
+  }
+
+  .galleria {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,396 @@
+/*******************************************************************************
+ * 02_style — colori e componenti della cornice.
+ * Palette One Dark, come nel tema di riferimento (dark-theme-editor).
+ ******************************************************************************/
+
+:root {
+  --sfondo: #282c34;
+  --sfondo-alt: #21252b; /* barre e sidebar */
+  --sfondo-code: #1e2127;
+  --bordo: rgb(59, 59, 59);
+  --bordo-chiaro: rgb(99, 99, 99);
+  --testo: #eeffff;
+  --testo-tenue: #8b96a5;
+  --titolo: #e0e5e5;
+  /* Aggiunta rispetto al tema originale, che lascia i link del colore del
+     testo: su pagine di prosa i link diventerebbero invisibili. */
+  --accento: #61afef;
+  --accento-tenue: #4b8dbf;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+body {
+  background-color: var(--sfondo);
+  color: var(--testo);
+  font-family: var(--font);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+a:link,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(97, 175, 239, 0.3);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bordo-chiaro) transparent;
+}
+
+/*** Header ***/
+
+header {
+  background: var(--sfondo-alt);
+  border-bottom: 1px solid var(--bordo);
+  font-size: 0.75rem;
+  color: var(--testo-tenue);
+  padding: 0 0.75rem;
+  gap: 0.75rem;
+}
+
+.header_left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.header_left .prompt {
+  font-family: var(--mono);
+  color: var(--titolo);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header_left .prompt:hover {
+  color: var(--accento);
+}
+
+.header_right a:hover {
+  color: var(--accento);
+}
+
+.sidebar-toggle {
+  display: none; /* compare sotto i 900px */
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-toggle span {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background: var(--testo-tenue);
+}
+
+.sidebar-toggle:hover span {
+  background: var(--accento);
+}
+
+/*** Sidebar: albero di file ***/
+
+aside.sidebar {
+  background: var(--sfondo-alt);
+  border-right: 1px solid var(--bordo);
+  font-size: 0.8125rem;
+  padding: 0.6rem 0 2rem;
+}
+
+.tree-root {
+  display: block;
+  padding: 0.2rem 0.75rem 0.2rem 1.6rem;
+  color: var(--testo-tenue);
+}
+
+details.tree-dir > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  color: var(--titolo);
+  list-style: none;
+  user-select: none;
+}
+
+details.tree-dir > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.tree-dir > summary::before {
+  content: "▸";
+  display: inline-block;
+  width: 0.7em;
+  font-size: 0.7rem;
+  color: var(--bordo-chiaro);
+  transition: transform 0.12s ease;
+}
+
+details.tree-dir[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+details.tree-dir > summary:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+details.tree-dir > summary.is-active {
+  color: var(--accento);
+}
+
+details.tree-dir ul {
+  list-style: none;
+  margin: 0 0 0.4rem;
+  padding: 0;
+}
+
+a.tree-file {
+  display: block;
+  padding: 0.18rem 0.75rem 0.18rem 2rem;
+  color: var(--testo-tenue);
+  border-left: 2px solid transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+a.tree-file:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--testo);
+}
+
+a.tree-file.is-active {
+  color: var(--accento);
+  background: rgba(97, 175, 239, 0.08);
+  border-left-color: var(--accento);
+}
+
+.tree-vuota {
+  padding: 0.18rem 0.75rem 0.18rem 2rem;
+  color: var(--bordo-chiaro);
+  font-style: italic;
+}
+
+/*** Footer: barra di stato ***/
+
+footer {
+  background: var(--sfondo-alt);
+  border-top: 1px solid var(--bordo);
+  font-size: 0.6875rem;
+  font-family: var(--mono);
+  color: var(--testo-tenue);
+  padding: 0 0.75rem;
+  gap: 1rem;
+}
+
+/* min-width:0 è quello che permette al percorso di accorciarsi: senza,
+   l'elemento non scende sotto la larghezza del suo testo e spinge fuori
+   la metà destra su schermi stretti. */
+.status_left {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status_right {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/*** Intestazione della pagina ***/
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--bordo);
+}
+
+.title-header {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--titolo);
+  margin: 0.3rem 0 0;
+  line-height: 1.2;
+}
+
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--testo-tenue);
+}
+
+.breadcrumb a:hover {
+  color: var(--accento);
+}
+
+.breadcrumb .sep {
+  color: var(--bordo-chiaro);
+  margin: 0 0.3rem;
+}
+
+.title-meta {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--testo-tenue);
+  padding-bottom: 0.35rem;
+}
+
+/*** Elenchi di pagine ***/
+
+.elenco {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 72ch;
+}
+
+.elenco li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(59, 59, 59, 0.55);
+}
+
+.elenco-titolo {
+  color: var(--titolo);
+  font-size: 1.05rem;
+}
+
+.elenco-titolo:hover {
+  color: var(--accento);
+}
+
+.elenco-data {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--testo-tenue);
+  font-variant-numeric: tabular-nums;
+}
+
+.elenco-descrizione {
+  flex: 1 0 100%;
+  margin: 0.1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--testo-tenue);
+}
+
+.elenco-vuoto,
+.galleria-mancante {
+  color: var(--bordo-chiaro);
+  font-style: italic;
+}
+
+.intro-sezione {
+  margin-bottom: 1.5rem;
+}
+
+/*** Galleria dei disegni ***/
+
+.galleria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.galleria-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--sfondo-alt);
+  border: 1px solid var(--bordo);
+  overflow: hidden;
+}
+
+.galleria-tile:hover {
+  border-color: var(--bordo-chiaro);
+}
+
+.galleria-tile img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: var(--sfondo-code);
+}
+
+.galleria-didascalia {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  color: var(--testo-tenue);
+}
+
+.galleria-tile:hover .galleria-didascalia {
+  color: var(--testo);
+}
+
+/*** Pagina di una singola opera ***/
+
+.opera figure {
+  margin: 0 0 1.75rem;
+}
+
+.opera img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--bordo);
+  background: var(--sfondo-code);
+}
+
+.opera figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--testo-tenue);
+}
+
+/*** Tag ***/
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--bordo);
+  color: var(--testo-tenue);
+}
+
+.tag:hover {
+  color: var(--accento);
+  border-color: var(--accento);
+}

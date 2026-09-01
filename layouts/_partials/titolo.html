@@ -1,0 +1,18 @@
+{{/* Intestazione della pagina: briciole di pane + titolo + data. */}}
+<div class="title">
+  <div class="title-left">
+    <nav class="breadcrumb" aria-label="Percorso">
+      {{- range .Ancestors.Reverse }}
+        <a href="{{ .RelPermalink }}">{{ if .IsHome }}~{{ else }}{{ .LinkTitle }}{{ end }}</a
+        ><span class="sep">/</span>
+      {{- end }}
+      <span class="corrente">{{ .LinkTitle }}</span>
+    </nav>
+    <h1 class="title-header">{{ .Title }}</h1>
+  </div>
+  {{ if and .IsPage (not .Date.IsZero) }}
+    <div class="title-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+    </div>
+  {{ end }}
+</div>

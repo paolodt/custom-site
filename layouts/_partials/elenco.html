@@ -1,0 +1,16 @@
+{{/* Elenco di pagine. Riceve direttamente una collezione di Pages. */}}
+<ul class="elenco">
+  {{ range . }}
+    <li>
+      <a class="elenco-titolo" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      {{ if not .Date.IsZero }}
+        <time class="elenco-data" datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date | time.Format ":date_medium" }}
+        </time>
+      {{ end }}
+      {{ with .Description }}<p class="elenco-descrizione">{{ . }}</p>{{ end }}
+    </li>
+  {{ else }}
+    <li class="elenco-vuoto">Ancora niente qui.</li>
+  {{ end }}
+</ul>

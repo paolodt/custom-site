@@ -1,0 +1,14 @@
+{
+  // Worker di soli asset statici: nessun "main", serve solo il contenuto di ./public.
+  // Il nome deve coincidere con quello del Worker nella dashboard Cloudflare,
+  // altrimenti la build fallisce.
+  "name": "custom-site",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    // foo.html servito senza slash finale, foo/index.html con lo slash.
+    "html_handling": "auto-trailing-slash",
+    // Per un URL inesistente serve public/404.html con status 404.
+    "not_found_handling": "404-page"
+  }
+}

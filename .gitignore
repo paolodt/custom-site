@@ -1,0 +1,13 @@
+# Output della build
+/public/
+
+# Cache delle immagini generate e lock di Hugo
+/resources/
+/.hugo_build.lock
+
+# Wrangler
+.wrangler/
+.dev.vars
+
+# Sistema
+.DS_Store

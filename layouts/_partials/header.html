@@ -1,0 +1,19 @@
+<header>
+  <div class="header_left">
+    <button
+      class="sidebar-toggle"
+      type="button"
+      aria-label="Apri o chiudi il menu"
+      aria-expanded="false"
+      aria-controls="sidebar"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <a class="prompt" href="{{ "/" | relURL }}">{{ site.Params.prompt }}</a>
+  </div>
+  <div class="header_right">
+    {{ with site.Params.github }}
+      <a href="{{ . }}" rel="me noopener">github</a>
+    {{ end }}
+  </div>
+</header>

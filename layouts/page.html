@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{ partial "titolo.html" . }}
+  <div class="markdown">{{ .Content }}</div>
+  {{ with .GetTerms "tags" }}
+    <div class="tags">
+      {{ range . }}<a class="tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+    </div>
+  {{ end }}
+{{ end }}

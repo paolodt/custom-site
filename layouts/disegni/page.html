@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ partial "titolo.html" . }}
+  <div class="opera">
+    {{ range .Resources.ByType "image" }}
+      {{ $grande := .Fit "1600x1600" }}
+      <figure>
+        <a href="{{ .RelPermalink }}">
+          <img
+            src="{{ $grande.RelPermalink }}"
+            width="{{ $grande.Width }}"
+            height="{{ $grande.Height }}"
+            alt="{{ with .Title }}{{ . }}{{ else }}{{ $.LinkTitle }}{{ end }}"
+          />
+        </a>
+        {{ with .Params.didascalia }}<figcaption>{{ . }}</figcaption>{{ end }}
+      </figure>
+    {{ end }}
+  </div>
+  {{ with .Content }}<div class="markdown">{{ . }}</div>{{ end }}
+{{ end }}

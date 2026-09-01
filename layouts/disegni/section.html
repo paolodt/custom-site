@@ -1,0 +1,32 @@
+{{ define "main" }}
+  {{ partial "titolo.html" . }}
+  {{ with .Content }}<div class="markdown intro-sezione">{{ . }}</div>{{ end }}
+
+  <div class="galleria">
+    {{ range .RegularPagesRecursive.ByDate.Reverse }}
+      {{ $pagina := . }}
+      <a class="galleria-tile" href="{{ .RelPermalink }}">
+        {{ with .Resources.ByType "image" }}
+          {{ $miniatura := (index . 0).Fit "600x600" }}
+          <img
+            src="{{ $miniatura.RelPermalink }}"
+            width="{{ $miniatura.Width }}"
+            height="{{ $miniatura.Height }}"
+            alt="{{ $pagina.LinkTitle }}"
+            loading="lazy"
+          />
+        {{ else }}
+          <span class="galleria-mancante">nessuna immagine</span>
+        {{ end }}
+        <span class="galleria-didascalia">
+          {{ .LinkTitle }}
+          {{ if not .Date.IsZero }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>
+          {{ end }}
+        </span>
+      </a>
+    {{ else }}
+      <p class="elenco-vuoto">Ancora niente qui.</p>
+    {{ end }}
+  </div>
+{{ end }}
