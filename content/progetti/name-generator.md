@@ -2,7 +2,7 @@
 title: "Name Generator"
 date: 2026-02-10
 description: "Un generatore di nomi italiani medievaleggianti. Gira qui in pagina."
-tags: ["obsidian", "python", "gdr"]
+tags: ["gdr"]
 ---
 
 {{< generatore-nomi >}}

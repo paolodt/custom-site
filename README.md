@@ -15,46 +15,51 @@ hugo --gc --minify           # build come su Cloudflare, output in public/
 
 ## Aggiungere contenuti
 
-Tre sezioni, tre cartelle sotto `content/`.
+Due comandi: `nuovo` crea la pagina, `pubblica` la fa uscire dalla bozza.
+Nessuno dei due tocca git.
 
-### Un pensiero
+### `./nuovo`
 
-Le note nascono nel vault Obsidian (`PENSIERI/`). Per pubblicarne una, copiala
-in `content/pensieri/` e mettici il front matter:
-
-```yaml
----
-title: "Titolo della nota"
-date: 2026-09-01
-description: "Una riga, compare negli elenchi."
-tags: ["gioco"]
----
+```sh
+./nuovo pensiero "Pocket World"              # content/pensieri/pocket-world.md
+./nuovo progetto "Map Generator"
+./nuovo disegno "Studio di mani" schizzo.png # cartella + immagine dentro
+./nuovo pensiero --da ~/Obsidian/PENSIERI/Bozze/"2026-04-15 Pocket World.md"
 ```
 
-`draft: true` la tiene fuori dal sito ma visibile con `hugo server -D`.
+Scrive il front matter, mette il file nella cartella giusta e apre `$EDITOR`
+(`--no-editor` per saltarlo). La pagina nasce con `draft: true`, quindi non
+finisce online finché non la pubblichi.
 
-### Un progetto
+Gli accenti nel titolo diventano lettere semplici nel nome del file: *Città di
+notte* → `citta-di-notte.md`. Se il file esiste già si rifiuta di sovrascriverlo.
 
-Uguale, in `content/progetti/`.
+Con `--da` importa una nota dal vault: se il nome comincia con una data —
+`2026-04-15 Pocket World.md`, come le tue in `Bozze/` — **titolo e data li
+ricava da lì**.
 
-### Un disegno
+### `./pubblica`
 
-Ogni disegno è una **cartella** (un *page bundle*) dentro `content/disegni/`:
-
+```sh
+./pubblica                                    # tutte le bozze
+./pubblica content/pensieri/pocket-world.md   # solo questa
 ```
-content/disegni/nome-del-disegno/
-├── index.md          title, date, description
-├── uno.png
-└── due.jpg
-```
 
-Le immagini stanno accanto a `index.md`, Hugo genera le miniature da solo. La
-prima immagine della cartella diventa la copertina nella galleria.
+Toglie `draft: true` e ricostruisce il sito, così un errore salta fuori adesso e
+non dopo il push. Se il build fallisce rimette tutto in bozza. Alla fine stampa
+il comando git da lanciare, ma non committa e non pusha: quello lo fai tu.
 
-I disegni fatti in Obsidian vanno **esportati in PNG prima**: i file
-`PENSIERI/Ink/*.drawing` e `*.excalidraw.md` non sono immagini.
+### Due cose da sapere
 
-Scorciatoia per una pagina nuova: `hugo new content/pensieri/titolo.md`.
+**I wikilink di Obsidian** (`[[Nota]]`) Hugo non li rende: resterebbero le
+parentesi quadre in pagina. `nuovo --da` non li converte, ti avvisa e basta —
+decidi nota per nota. Convertirli in automatico è un lavoro a sé: bisogna sapere
+se la nota di destinazione è pubblicata o no.
+
+**I disegni fatti in Obsidian** vanno esportati in PNG prima: i file
+`PENSIERI/Ink/*.drawing` e `*.excalidraw.md` non sono immagini. Ogni disegno è
+una cartella con dentro `index.md` e i file immagine; la prima immagine diventa
+la copertina nella galleria.
 
 ## Come è fatto il sito
 
@@ -63,8 +68,10 @@ Scorciatoia per una pagina nuova: `hugo new content/pensieri/titolo.md`.
 - `layouts/` — template, nella struttura introdotta da Hugo 0.146:
   `baseof.html`, `home.html`, `section.html`, `page.html`, i partial in
   `_partials/`, le varianti di sezione in `disegni/`.
-- `assets/css/` — cinque file numerati, concatenati e minificati in un unico
-  bundle. `04_responsive.css` va per ultimo perché sovrascrive gli altri.
+- `assets/css/` — file numerati, concatenati e minificati in un unico bundle.
+  I numeri sono l'ordine di caricamento: `06_responsive.css` va per ultimo
+  perché sovrascrive gli altri.
+- `nuovo` e `pubblica` — gli script qui sopra.
 - `assets/js/ui.js` — apertura della sidebar sotto i 900px. Le cartelle
   dell'albero si aprono con `<details>`, senza JavaScript.
 - `wrangler.jsonc` — configurazione Cloudflare.
