@@ -1,40 +1,6 @@
 {{ define "main" }}
   <div class="home">
     <h1 class="home-title">{{ site.Title }}</h1>
-
-    <div class="recommend">
-      <div class="left">
-        <h2 class="home-sezione"><a href="{{ "/pensieri/" | relURL }}">ultimi pensieri</a></h2>
-        {{ partial "elenco.html" (first 5 (where site.RegularPages "Section" "pensieri")) }}
-      </div>
-      <div class="right">
-        <h2 class="home-sezione"><a href="{{ "/progetti/" | relURL }}">ultimi progetti</a></h2>
-        {{ partial "elenco.html" (first 5 (where site.RegularPages "Section" "progetti")) }}
-      </div>
-    </div>
-
-    {{ $disegni := first 4 (where site.RegularPages "Section" "disegni") }}
-    {{ with $disegni }}
-      <div class="home-disegni">
-        <h2 class="home-sezione"><a href="{{ "/disegni/" | relURL }}">ultimi disegni</a></h2>
-        <div class="galleria galleria-stretta">
-          {{ range . }}
-            {{ $pagina := . }}
-            {{ with .Resources.ByType "image" }}
-              {{ $miniatura := (index . 0).Fit "400x400" }}
-              <a class="galleria-tile" href="{{ $pagina.RelPermalink }}">
-                <img
-                  src="{{ $miniatura.RelPermalink }}"
-                  width="{{ $miniatura.Width }}"
-                  height="{{ $miniatura.Height }}"
-                  alt="{{ $pagina.LinkTitle }}"
-                  loading="lazy"
-                />
-              </a>
-            {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    {{ end }}
+    {{ partial "elenco.html" site.RegularPages.ByDate.Reverse }}
   </div>
 {{ end }}

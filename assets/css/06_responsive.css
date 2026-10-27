@@ -38,24 +38,10 @@
   article.main.is-home {
     padding: 6vh 5vw 4vh;
   }
-
-  .recommend {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .galleria {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-
-  .galleria-tile img {
-    height: 150px;
-  }
 }
 
 @media only screen and (prefers-reduced-motion: reduce) {
-  aside.sidebar,
-  details.tree-dir > summary::before {
+  aside.sidebar {
     transition: none;
   }
 }
@@ -83,9 +69,5 @@
 
   .header_right {
     display: none;
-  }
-
-  .galleria {
-    grid-template-columns: 1fr;
   }
 }

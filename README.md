@@ -15,7 +15,8 @@ hugo --gc --minify           # build come su Cloudflare, output in public/
 
 ## Aggiungere contenuti
 
-Tre sezioni, tre cartelle sotto `content/`. Ogni pagina comincia con il front
+Niente sezioni: tutto sta direttamente in `content/`, e la home e la sidebar
+elencano ogni pagina, dalla più recente. Ogni pagina comincia con il front
 matter:
 
 ```yaml
@@ -28,15 +29,17 @@ draft: true       # fuori dal sito, ma visibile con hugo server -D
 ---
 ```
 
-**Pensieri e progetti**: un file `.md` in `content/pensieri/` o
-`content/progetti/`.
+`linkTitle` (facoltativo) è il nome che compare negli elenchi al posto di
+`title`.
 
-**Disegni**: una **cartella** (*page bundle*) dentro `content/disegni/`, con le
-immagini accanto a `index.md`. Hugo genera le miniature da solo e la prima
-immagine diventa la copertina nella galleria.
+**Solo testo**: un file `.md` in `content/`.
+
+**Con file allegati** (immagini, PDF): una **cartella** (*page bundle*) in
+`content/`, con i file accanto a `index.md` e linkati per nome dal markdown,
+per esempio `![](uno.png)`. È il caso della tesi.
 
 ```
-content/disegni/nome-del-disegno/
+content/nome-della-pagina/
 ├── index.md
 ├── uno.png
 └── due.jpg
@@ -53,22 +56,19 @@ nota dal vault.
 
 ## Come è fatto il sito
 
-- `hugo.toml` — configurazione. `baseURL`, le sezioni, la palette di
-  colorazione del codice.
+- `hugo.toml` — configurazione. `baseURL`, la palette di colorazione del
+  codice.
 - `layouts/` — template, nella struttura introdotta da Hugo 0.146:
-  `baseof.html`, `home.html`, `section.html`, `page.html`, i partial in
-  `_partials/`, le varianti di sezione in `disegni/`.
+  `baseof.html`, `home.html`, `page.html`, i partial in `_partials/`.
 - `assets/css/` — file numerati, concatenati e minificati in un unico bundle.
   I numeri sono l'ordine di caricamento: `06_responsive.css` va per ultimo
   perché sovrascrive gli altri.
-- `assets/js/ui.js` — apertura della sidebar sotto i 900px. Le cartelle
-  dell'albero si aprono con `<details>`, senza JavaScript.
+- `assets/js/ui.js` — apertura della sidebar sotto i 900px.
 - `wrangler.jsonc` — configurazione Cloudflare.
 
 L'aspetto è ispirato al tema Hugo
 [dark-theme-editor](https://github.com/JingWangTW/dark-theme-editor)
-di Jing Wang (Apache-2.0): palette One Dark, cornice da editor, sidebar ad
-albero. I template e il CSS di questo repo sono però scritti da zero.
+di Jing Wang (Apache-2.0): palette One Dark, cornice da editor, sidebar. I template e il CSS di questo repo sono però scritti da zero.
 
 ## Deploy
 

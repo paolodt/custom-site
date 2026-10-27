@@ -1,9 +1,5 @@
 /*******************************************************************************
- * Interazioni della cornice. Due sole cose:
- *  1. apertura/chiusura della sidebar sotto i 900px;
- *  2. nell'albero il nome della sezione è un <a> dentro a <summary>, e senza
- *     questo il click aprirebbe/chiuderebbe la cartella invece di navigare.
- * L'apertura delle cartelle la fa <details> da solo, senza JavaScript.
+ * Interazioni della cornice: solo apertura/chiusura della sidebar sotto i 900px.
  ******************************************************************************/
 
 (function () {
@@ -41,14 +37,4 @@
       if (e.matches) mostraSidebar(false);
     });
   }
-
-  document.querySelectorAll("details.tree-dir > summary").forEach(function (s) {
-    s.addEventListener("click", function (e) {
-      var link = e.target.closest("a");
-      if (link && link.href) {
-        e.preventDefault();
-        window.location.href = link.href;
-      }
-    });
-  });
 })();

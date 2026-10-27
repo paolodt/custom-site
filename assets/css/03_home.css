@@ -1,6 +1,6 @@
 /*******************************************************************************
  * 03_home — solo la homepage.
- * Come nel tema: molto respiro ai lati e un blocco a due colonne.
+ * Come nel tema: molto respiro ai lati. Sotto il titolo, l'elenco di tutto.
  ******************************************************************************/
 
 article.main.is-home {
@@ -16,41 +16,6 @@ article.main.is-home {
   color: var(--titolo);
 }
 
-.recommend {
-  display: flex;
-  gap: 3rem;
+.home .elenco {
   margin-top: 3rem;
-}
-
-.recommend > div {
-  flex: 1 1 50%;
-  min-width: 0;
-}
-
-.home-sezione {
-  margin: 0 0 0.4rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--bordo);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--testo-tenue);
-}
-
-.home-sezione a:hover {
-  color: var(--accento);
-}
-
-.home-disegni {
-  margin-top: 3rem;
-}
-
-.galleria-stretta {
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  margin-top: 1rem;
-}
-
-.galleria-stretta img {
-  height: 130px;
 }

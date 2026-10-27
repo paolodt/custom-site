@@ -105,7 +105,7 @@ header {
   background: var(--accento);
 }
 
-/*** Sidebar: albero di file ***/
+/*** Sidebar: elenco piatto di file ***/
 
 aside.sidebar {
   background: var(--sfondo-alt);
@@ -114,57 +114,15 @@ aside.sidebar {
   padding: 0.6rem 0 2rem;
 }
 
-.tree-root {
-  display: block;
-  padding: 0.2rem 0.75rem 0.2rem 1.6rem;
-  color: var(--testo-tenue);
-}
-
-details.tree-dir > summary {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.75rem;
-  cursor: pointer;
-  color: var(--titolo);
+aside.sidebar ul {
   list-style: none;
-  user-select: none;
-}
-
-details.tree-dir > summary::-webkit-details-marker {
-  display: none;
-}
-
-details.tree-dir > summary::before {
-  content: "▸";
-  display: inline-block;
-  width: 0.7em;
-  font-size: 0.7rem;
-  color: var(--bordo-chiaro);
-  transition: transform 0.12s ease;
-}
-
-details.tree-dir[open] > summary::before {
-  transform: rotate(90deg);
-}
-
-details.tree-dir > summary:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-details.tree-dir > summary.is-active {
-  color: var(--accento);
-}
-
-details.tree-dir ul {
-  list-style: none;
-  margin: 0 0 0.4rem;
+  margin: 0;
   padding: 0;
 }
 
 a.tree-file {
   display: block;
-  padding: 0.18rem 0.75rem 0.18rem 2rem;
+  padding: 0.18rem 0.75rem;
   color: var(--testo-tenue);
   border-left: 2px solid transparent;
   overflow: hidden;
@@ -181,12 +139,6 @@ a.tree-file.is-active {
   color: var(--accento);
   background: rgba(97, 175, 239, 0.08);
   border-left-color: var(--accento);
-}
-
-.tree-vuota {
-  padding: 0.18rem 0.75rem 0.18rem 2rem;
-  color: var(--bordo-chiaro);
-  font-style: italic;
 }
 
 /*** Footer: barra di stato ***/
@@ -278,6 +230,12 @@ footer {
   border-bottom: 1px solid rgba(59, 59, 59, 0.55);
 }
 
+/* Il li è flex e perde il pallino nativo: lo rimetto a mano. */
+.elenco li:not(.elenco-vuoto)::before {
+  content: "•";
+  color: var(--bordo-chiaro);
+}
+
 .elenco-titolo {
   color: var(--titolo);
   font-size: 1.05rem;
@@ -295,71 +253,9 @@ footer {
   font-variant-numeric: tabular-nums;
 }
 
-.elenco-vuoto,
-.galleria-mancante {
+.elenco-vuoto {
   color: var(--bordo-chiaro);
   font-style: italic;
-}
-
-/*** Galleria dei disegni ***/
-
-.galleria {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.galleria-tile {
-  display: flex;
-  flex-direction: column;
-  background: var(--sfondo-alt);
-  border: 1px solid var(--bordo);
-  overflow: hidden;
-}
-
-.galleria-tile:hover {
-  border-color: var(--bordo-chiaro);
-}
-
-.galleria-tile img {
-  display: block;
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: var(--sfondo-code);
-}
-
-.galleria-didascalia {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.5rem 0.6rem;
-  font-size: 0.8rem;
-  color: var(--testo-tenue);
-}
-
-.galleria-tile:hover .galleria-didascalia {
-  color: var(--testo);
-}
-
-/*** Pagina di una singola opera ***/
-
-.opera figure {
-  margin: 0 0 1.75rem;
-}
-
-.opera img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border: 1px solid var(--bordo);
-  background: var(--sfondo-code);
-}
-
-.opera figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--testo-tenue);
 }
 
 /*** Tag ***/

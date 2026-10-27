@@ -1,5 +1,0 @@
-{{ define "main" }}
-  {{ partial "titolo.html" . }}
-  {{ with .Content }}<div class="markdown intro-sezione">{{ . }}</div>{{ end }}
-  {{ partial "elenco.html" .RegularPagesRecursive.ByDate.Reverse }}
-{{ end }}
