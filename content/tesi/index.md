@@ -1,7 +1,7 @@
 ---
 title: "Ottimizzazione dell'assemblatore genomico Flye attraverso parallelizzazione su GPU"
 linkTitle: "Tesi"
-date: 2026-10-14
+date: 2026-10-20
 description: "Porting su GPU della fase di polishing di Flye, un assemblatore genomico per long read."
 tags: []
 ---
